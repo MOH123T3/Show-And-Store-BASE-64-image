@@ -1,0 +1,32 @@
+
+Flutter how to Show BASE 64 Image  --- 
+
+Image.memory(
+                                        Base64Decoder()
+                                            .convert(userImage.toString()),
+                                        errorBuilder: (context, url, error) =>
+                                            SvgPicture.asset(
+                                          "asset/images/002_Profile.svg",
+                                          color: Utils.primarycolor,
+                                        )
+                                        
+                                      )
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+Flutter How to Store BASE 64  Image in Local Path --- 
+
+ String dir = (await getApplicationDocumentsDirectory()).path;
+      File file = File(
+          "$dir/" + DateTime.now().millisecondsSinceEpoch.toString() + ".jpg");
+        
+        final encodedStr = jsonDecode(widget.response)['profilePhoto'];
+        Uint8List bytes = base64.decode(encodedStr);
+        await file.writeAsBytes(bytes);
+
+        filePath = file.path;
+
+
+
